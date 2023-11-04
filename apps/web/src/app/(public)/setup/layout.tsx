@@ -4,7 +4,7 @@ export default function SetupLayout({ children }) {
       <div>
         <div className="max-w-2xl m-auto py-10">
           <h2 className="text-3xl font-bold mb-10">
-            Let's setup your profile.
+            {"Let's setup your profile."}
           </h2>
           {children}
         </div>

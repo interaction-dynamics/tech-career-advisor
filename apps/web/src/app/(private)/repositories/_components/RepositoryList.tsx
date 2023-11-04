@@ -1,12 +1,10 @@
 'use client'
 
 import { Input } from '@/components/ui/input'
-import MaxWidthContainer from '@/components/atoms/MaxWidthContainer'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
@@ -14,7 +12,8 @@ import { DotsHorizontalIcon } from '@radix-ui/react-icons'
 import { Button } from '@/components/ui/button'
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { mockParsedRepositories } from '@/__mocks__/mockRepositories.mock'
-import StatusIndicator from '@/components/molecules/StatusIndicator'
+import StatusIndicator from '@/app/(private)/repositories/_components/StatusIndicator'
+import MaxWidthContainer from '../../_components/MaxWidthContainer'
 
 const data = mockParsedRepositories()
 
@@ -23,7 +22,7 @@ export default function RepositoryList() {
 
   return (
     <div>
-      <MaxWidthContainer className="max-w-screen-xl	py-10">
+      <MaxWidthContainer>
         <div className="flex items-stretch mb-5">
           <Input placeholder="Filter repositories..." className="max-w-xl" />
           <div className="flex-1" />
