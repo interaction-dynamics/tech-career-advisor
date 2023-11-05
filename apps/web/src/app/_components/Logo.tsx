@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export const title = 'tech_Advisor/AI'
+export const title = 'tech_Advisor'
 
 export default function Logo() {
   return (

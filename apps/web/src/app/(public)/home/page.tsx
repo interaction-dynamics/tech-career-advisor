@@ -8,7 +8,7 @@ export default function HomePage() {
     <div className="pt-20 min-h-screen">
       <Paddings className="m-auto max-w-screen-lg">
         <Button asChild>
-          <Link href="/login">Log in</Link>
+          <Link href="/sign-up">Sign up</Link>
         </Button>
       </Paddings>
     </div>

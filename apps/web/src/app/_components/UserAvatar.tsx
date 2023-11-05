@@ -1,3 +1,8 @@
+'use client'
+import { useClerk, useUser } from '@clerk/nextjs'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+
 import { mockUser } from '@/__mocks__/mockUser.mock'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
@@ -8,30 +13,37 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import Link from 'next/link'
 
 const user = mockUser()
 
 export default function UserAvatar() {
+  const { signOut } = useClerk()
+  const router = useRouter()
+  const { user } = useUser()
+
+  if (!user) return null
+
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger>
         <Avatar className="w-7 h-7">
-          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarImage src={user.imageUrl} />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="mr-3 w-56 mt-2">
+      <DropdownMenuContent align="end" className="w-56 mt-2">
         <DropdownMenuLabel>
-          <div>{user.name}</div>
-          <div className="text-foreground/60 font-normal">{user.email}</div>
+          <div>{user.fullName}</div>
+          <div className="text-foreground/60 font-normal">
+            {user.emailAddresses[0].emailAddress}
+          </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
           <Link href="/dashboard">Dashboard</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link href="/dashboard">Settings</Link>
+          <Link href="/settings">Settings</Link>
         </DropdownMenuItem>
         <DropdownMenuItem>Billing</DropdownMenuItem>
         <DropdownMenuItem>Team</DropdownMenuItem>
@@ -41,7 +53,9 @@ export default function UserAvatar() {
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href="/home">Log Out</Link>
+          <Link href="/home" onClick={() => signOut(() => router.push('/'))}>
+            Log Out
+          </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

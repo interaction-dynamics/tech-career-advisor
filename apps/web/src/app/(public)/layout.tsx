@@ -1,6 +1,5 @@
 import Footer from '@/app/_components/Footer'
 import Layout from '@/app/_components/Layout'
-import UserAvatar from '@/app/_components/UserAvatar'
 import Header from '@/app/_components/Header'
 import Paddings from '../_components/Paddings'
 
@@ -9,10 +8,7 @@ export default function PublicLayout({ children }) {
     <Layout
       header={
         <div className="backdrop-blur-md">
-          <Header
-            className="m-auto max-w-screen-2xl"
-            actions={<UserAvatar />}
-          />
+          <Header className="m-auto max-w-screen-2xl" />
         </div>
       }
       footer={<Footer />}

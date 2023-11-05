@@ -4,9 +4,9 @@ import MaxWidthContainer from '../../_components/MaxWidthContainer'
 
 export default function UserSummary() {
   return (
-    <div className="py-10">
+    <div className="">
       <MaxWidthContainer>
-        <div className="flex items-center pb-5">
+        <div className="flex items-center pt-5 pb-10">
           <div className="flex-1">
             <h2 className="font-semibold text-4xl text-foreground">
               Thibault Friedrich

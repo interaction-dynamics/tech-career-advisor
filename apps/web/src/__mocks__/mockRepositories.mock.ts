@@ -53,13 +53,13 @@ export const mockRepositories = (): ParsedRepository[] => [
   },
   {
     provider: 'github',
-    name: 'react-composition',
+    name: 'react-composition2',
     createdAt: '2023-03-03T03:03:03Z',
     updatedAt: '2023-03-03T03:03:03Z',
     parsing: {
       lastRun: '2023-03-03T03:03:03Z',
       status: 'pending',
     },
-    url: 'friedrith/react-composition',
+    url: 'friedrith/react-composition2',
   },
 ]

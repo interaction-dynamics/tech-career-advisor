@@ -23,7 +23,7 @@ export default function RepositoryList() {
   return (
     <div>
       <MaxWidthContainer>
-        <div className="flex items-stretch mb-5">
+        <div className="flex items-stretch pt-5 mb-5">
           <Input placeholder="Filter repositories..." className="max-w-xl" />
           <div className="flex-1" />
           <Button>Add Repository</Button>

@@ -1,9 +1,7 @@
 import { auth } from '@clerk/nextjs'
 import { redirect } from 'next/navigation'
-import HomePage from './(public)/home/page'
-import Layout from './(public)/layout'
 
-export default function Web() {
+export default function SignLayout({ children }) {
   const { userId } = auth()
 
   if (userId) {
@@ -11,8 +9,8 @@ export default function Web() {
   }
 
   return (
-    <Layout>
-      <HomePage />
-    </Layout>
+    <div className="min-h-screen flex items-center flex-col justify-center pt-20">
+      {children}
+    </div>
   )
 }
