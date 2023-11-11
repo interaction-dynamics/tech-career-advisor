@@ -3,7 +3,9 @@ import { auth } from '@clerk/nextjs'
 import { NextResponse } from 'next/server'
 import clerk from '@clerk/clerk-sdk-node'
 
+// https://stackoverflow.com/questions/75977883/how-to-get-a-logged-in-users-google-access-token-when-using-clerk-for-auth
 export async function GET(req: Request) {
+  console.log('ok')
   try {
     const { userId } = auth()
 
@@ -16,24 +18,14 @@ export async function GET(req: Request) {
     // this is the token I need to use to make requests to the gmail api
     // destructuring it here for clarity you can also just use OauthAccessToken.token below
     const { token } = OauthAccessToken
-    R
+
     if (!token) {
       return new NextResponse('Unauthorized NO TOKEN', { status: 401 })
     }
 
-    // this is the gmail api client, you can use this to make
-    // any request to the gmail api you can use any other
-    // google.whatever api you need. Here is we make use of
-    // the token we got from clerk passed in the headers
-    const gmail = google.gmail({
-      version: 'v1',
-      headers: { Authorization: `Bearer ${token}` },
-    })
-    const res = await gmail.users.labels.list({
-      userId: 'me',
-    })
+    return NextResponse.json({ token })
 
-    return NextResponse.json(res.data.labels)
+    console.log('token', token)
   } catch (error) {
     console.log('[GMAIL ERROR]', error)
     return new NextResponse('Internal error', { status: 500 })

@@ -9,9 +9,9 @@ export default authMiddleware({
     '/home',
     '/sign-up',
     '/login',
-    '/setup/profile',
-    '/setup/repositories',
     '/sso-callback',
+    '/sign-up-init',
+    '/login-init',
   ],
 })
 

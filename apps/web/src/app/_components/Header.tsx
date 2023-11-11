@@ -1,4 +1,4 @@
-import { auth } from '@clerk/nextjs'
+import { auth, currentUser } from '@clerk/nextjs'
 
 import { Separator } from '@/components/ui/separator'
 
@@ -15,13 +15,16 @@ export interface HeaderProps {
   className?: string
 }
 
-async function HeaderActions() {
-  const { userId } = auth()
+const convertUser = user => ({
+  fullName: user.fullName,
+  imageUrl: user.imageUrl,
+  emailAddress: user.emailAddresses[0].emailAddress,
+})
 
-  if (userId) {
-    // Query DB for user specific information or display assets only to logged in users
-  }
-  return userId ? <UserAvatar /> : <SignButtons />
+async function HeaderActions() {
+  const user = await currentUser()
+
+  return user ? <UserAvatar user={convertUser(user)} /> : <SignButtons />
 }
 
 export default function Header({
