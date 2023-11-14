@@ -30,7 +30,7 @@ export default async function RepositoriesPage() {
                   {/* @ts-expect-error Server Component */}
                   <AddRepostory />
                   <div className="flex pt-4 justify-end">
-                    <Button variant="disabled" disabled asChild>
+                    <Button variant="outline" asChild>
                       <Link href="/dashboard">Continue</Link>
                     </Button>
                   </div>

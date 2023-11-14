@@ -32,7 +32,7 @@ export default function RepositoryList() {
             <Table>
               <TableBody>
                 {table.map(repository => (
-                  <TableRow key={repository.url}>
+                  <TableRow key={repository.id}>
                     <TableCell className="pl-5">{repository.name}</TableCell>
                     <TableCell>
                       <div className="flex items-center">

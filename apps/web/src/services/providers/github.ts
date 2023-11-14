@@ -47,6 +47,10 @@ const convertToRepository = (repository: any): Repository => ({
   updatedAt: repository.updated_at,
 })
 
+const sortByDate = (repositoryA: Repository, repositoryB: Repository) =>
+  new Date(repositoryB.createdAt).getTime() -
+  new Date(repositoryA.createdAt).getTime()
+
 export const getRepositories = async (query: string = '') => {
   const token = await getToken()
 
@@ -65,6 +69,7 @@ export const getRepositories = async (query: string = '') => {
   return repositories
     .filter(r => (query ? r.name.includes(query) : true))
     .map(convertToRepository)
+    .reverse()
     .slice(0, 5)
 }
 

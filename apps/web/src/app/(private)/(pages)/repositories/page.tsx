@@ -1,12 +1,12 @@
-import { Button } from '@/components/ui/button'
 import SectionTitle from '../../_components/SectionTitle'
+import AddRepositoryButton from './_components/AddRepositoryButton'
 import RepositoryList from './_components/RepositoryList'
 
 export default function DashboardPage() {
   return (
     <>
       <SectionTitle title="Repositories">
-        <Button>Add Repository</Button>
+        <AddRepositoryButton />
       </SectionTitle>
       <RepositoryList />
     </>
