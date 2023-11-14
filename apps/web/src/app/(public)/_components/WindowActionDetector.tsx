@@ -16,7 +16,6 @@ export default function WindowActionDetector({ eventName, children }) {
   const { client } = useClerk()
 
   useMessages(eventName, () => {
-    console.log('clear cache')
     client.clearCache()
     router.refresh()
     setIsActionDetected(true)

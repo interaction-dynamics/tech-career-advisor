@@ -5,6 +5,7 @@ import { createAppAuth } from '@octokit/auth-app'
 import { App, createNodeMiddleware } from '@octokit/app'
 import githubAppJwt from 'universal-github-app-jwt'
 import crypto from 'node:crypto'
+import Repository from '@/types/Repository'
 
 // https://stackoverflow.com/questions/75977883/how-to-get-a-logged-in-users-google-access-token-when-using-clerk-for-auth
 export const getToken = async () => {
@@ -37,7 +38,16 @@ const privateKeyPkcs8 = crypto
   })
   .toString()
 
-export const getRepositories = async () => {
+const convertToRepository = (repository: any): Repository => ({
+  id: repository.id,
+  name: repository.name,
+  url: repository.html_url,
+  provider: 'github',
+  createdAt: repository.created_at,
+  updatedAt: repository.updated_at,
+})
+
+export const getRepositories = async (query: string = '') => {
   const token = await getToken()
 
   const app = new App({
@@ -46,28 +56,16 @@ export const getRepositories = async () => {
     token,
   })
 
-  const { data } = await app.octokit.request('/app')
+  const repositories = []
 
-  // const token = await getToken()
+  for await (const { octokit, repository } of app.eachRepository.iterator()) {
+    repositories.push(repository)
+  }
 
-  // console.log('token', token)
-
-  // const octokit = new Octokit({
-  //   authStrategy: createAppAuth,
-  //   auth: {
-  //     privateKey: process.env.GITHUB_APP_PRIVATE_KEY,
-  //     appId: parseInt(process.env.GITHUB_APP_ID, 10),
-  //     token,
-  //   },
-  // })
-
-  // const { data } = await app.octokit.repos.listForAuthenticatedUser({
-  //   visibility: 'all',
-  //   affiliation: 'owner',
-  //   per_page: 100,
-  // })
-
-  return data
+  return repositories
+    .filter(r => (query ? r.name.includes(query) : true))
+    .map(convertToRepository)
+    .slice(0, 5)
 }
 
 // https://github.com/octokit/app.js/#appgetinstallationoctokit
@@ -92,16 +90,12 @@ export const isAppInstalled = async () => {
   return installationCount > 0
 }
 
-export const getGithubUserId = async () => {
+export const getInstallationLink = async () => {
   const user = await currentUser()
 
-  return user?.externalAccounts.find(
+  const id = user?.externalAccounts.find(
     account => account.provider === 'oauth_github',
   ).externalId
-}
-
-export const getInstallationLink = async () => {
-  const id = await getGithubUserId()
 
   return `https://github.com/apps/${process.env.GITHUB_APP_NAME}/installations/new/permissions?target_id=${id}`
 }

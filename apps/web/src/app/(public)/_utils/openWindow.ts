@@ -16,7 +16,7 @@ const openWindow = ({ url, title, width: w = 700, height: h = 700 }) => {
     ? document.documentElement.clientHeight
     : screen.height
 
-  const systemZoom = width / window.screen.availWidth
+  const systemZoom = 1
   const left = (width - w) / 2 / systemZoom + dualScreenLeft
   const top = (height - h) / 2 / systemZoom + dualScreenTop
   const newWindow = window.open(

@@ -2,6 +2,7 @@ import { Parsing } from './Parsing'
 import RepositoryProvider from './RepositoryProvider'
 
 export default interface Repository {
+  id: string
   name: string
   url: string
   createdAt: string

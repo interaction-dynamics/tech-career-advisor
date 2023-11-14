@@ -1,15 +1,13 @@
 export interface CenterScreenProps {
-  title: string
+  title: React.ReactNode
   children: React.ReactNode
 }
 
 export default function CenterScreen({ title, children }) {
   return (
-    <div className="flex items-center flex-col justify-center">
-      <h2 className="text-3xl font-bold text-center leading-relaxed	">
-        {title}
-      </h2>
-      <div className="pt-10 flex flex-col items-stretch">{children}</div>
+    <div className="flex items-stretch flex-col justify-center">
+      <h2 className="text-4xl font-bold text-center leading-snug">{title}</h2>
+      <div className="py-10 flex flex-col items-stretch">{children}</div>
     </div>
   )
 }

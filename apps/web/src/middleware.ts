@@ -12,6 +12,9 @@ export default authMiddleware({
     '/sso-callback',
     '/sign-up-init',
     '/login-init',
+    '/window/init/login',
+    '/window/init/sign-up',
+    '/window/sso-callback',
   ],
 })
 

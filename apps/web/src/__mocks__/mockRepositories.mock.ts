@@ -30,6 +30,7 @@ export const mockParsedRepositories = (): ParsedRepository[] =>
 
 export const mockRepositories = (): ParsedRepository[] => [
   {
+    id: 'foo',
     provider: 'github',
     name: 'react-composition',
     createdAt: '2023-03-03T03:03:03Z',
@@ -41,6 +42,7 @@ export const mockRepositories = (): ParsedRepository[] => [
     url: 'friedrith/react-composition',
   },
   {
+    id: 'foo2',
     provider: 'github',
     name: 'node-wifi',
     createdAt: '2023-03-03T03:03:03Z',
@@ -52,6 +54,7 @@ export const mockRepositories = (): ParsedRepository[] => [
     url: 'friedrith/react-composition',
   },
   {
+    id: 'foo3',
     provider: 'github',
     name: 'react-composition2',
     createdAt: '2023-03-03T03:03:03Z',
