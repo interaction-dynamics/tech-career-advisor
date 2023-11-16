@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 
 import { Button } from '@/components/ui/button'
 import GithubIcon from '@/app/_components/GithubIcon'
-import openWindow from '@/app/(public)/_utils/openWindow'
+import openWindow from '@/app/_utils/openWindow'
 import { useMessages } from '@/lib/tabsMessages'
 import { SIGN_UP_MESSAGE } from '../../../window/signed-up-callback/page'
 

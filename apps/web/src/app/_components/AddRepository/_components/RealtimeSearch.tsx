@@ -17,15 +17,17 @@ export default function RealtimeSearch({ children }) {
   } = useSWR(`/api/provider-repositories?filter=${query}`, fetcher)
 
   return (
-    <RealtimeSearchContext.Provider
-      value={{ repositories: repositories ?? [], isLoading }}
-    >
-      <div className="flex gap-3 items-stretch">
-        <FilterRepositoryInput onChange={setQuery} />
-      </div>
-      <div className="h-72 flex flex-col mt-3 items-stretch justify-stretch">
-        {children}
-      </div>
-    </RealtimeSearchContext.Provider>
+    <div>
+      <RealtimeSearchContext.Provider
+        value={{ repositories: repositories ?? [], isLoading }}
+      >
+        <div className="flex gap-3 items-stretch">
+          <FilterRepositoryInput onChange={setQuery} />
+        </div>
+        <div className="h-72 flex flex-col mt-3 items-stretch justify-stretch">
+          {children}
+        </div>
+      </RealtimeSearchContext.Provider>
+    </div>
   )
 }

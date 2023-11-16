@@ -1,7 +1,7 @@
 'use client'
 import { Button } from '@/components/ui/button'
 import GithubIcon from '@/app/_components/GithubIcon'
-import openWindow from '@/app/(public)/_utils/openWindow'
+import openWindow from '@/app/_utils/openWindow'
 
 export interface Props {
   url?: string

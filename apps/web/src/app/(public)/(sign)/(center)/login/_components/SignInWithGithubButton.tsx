@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import GithubIcon from '@/app/_components/GithubIcon'
-import openWindow from '@/app/(public)/_utils/openWindow'
+import openWindow from '@/app/_utils/openWindow'
 import { useMessages } from '@/lib/tabsMessages'
 import { LOGIN_MESSAGE } from '../../../window/logged-in-callback/page'
 import { useClerk } from '@clerk/clerk-react'
